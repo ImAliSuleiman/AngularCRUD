@@ -69,8 +69,22 @@ $app->post('/signup', function (Request $request, Response $response, array $arg
     return $response;
 });
 
-$app->get('/deleteuser', function (Request $request, Response $response, array $args) {
-    $response = 'Delete User route.';
+$app->delete('/deleteuser/{username}', function (Request $request, Response $response, array $args) {
+    $username = $request -> getAttribute('username');
+
+    $query = "DELETE FROM users WHERE username=$username";
+
+    try{
+        $db = new Db;
+        $db = $db -> connect();
+
+        $statement = $db -> prepare($query);
+        $statement -> execute();
+        $response = '{"success": {"message": "User has been inserted."} }';
+
+    } catch(PDOException $e) {
+        $response = '{"error": {"message":' .$e->getMessage().' }}';
+    } 
 
     return $response;
 });
