@@ -1,10 +1,11 @@
-<!-- <div class="button-container">
+<div class="button-container">
   <button class="btn btn-lg btn-primary btn-block" (click)="onClickRefreshList()">Refresh List</button>
 </div>
 
 <ul *ngIf="users">
   <li *ngFor="let user of users.data">
-    <img [src]="user.avatar">
-    <p>{{ user.first_name }} {{ user.last_name }}</p>
+    {{ user.fullname }} {{ user.username }}
   </li>
-</ul> -->
+</ul>
+
+    <!-- <img [src]="user.avatar"> -->

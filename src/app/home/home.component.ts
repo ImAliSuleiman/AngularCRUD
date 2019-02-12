@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,7 @@ import { HttpService } from '../http.service';
 export class HomeComponent implements OnInit {
 
   users: Object;
+  private usersObservable : Observable<any[]>;
 
   constructor(private httpService: HttpService) { }
 
@@ -20,6 +22,9 @@ export class HomeComponent implements OnInit {
   private getUsersFromService(){
     this.httpService.getUsers().subscribe(data => {
       console.log('getUser request completed!');
+      data = {
+        "data": data
+      }
       this.users = data;
       console.log(this.users);
     })
