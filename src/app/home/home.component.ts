@@ -33,4 +33,12 @@ export class HomeComponent implements OnInit {
   onClickRefreshList(){
     this.getUsersFromService()
   }
+
+  onClickDeleteUser(username){
+    console.log('User to delete: ' + username);
+    this.httpService.deleteUser(username).subscribe(respose => {
+      console.log(respose);
+    })
+
+  }
 }

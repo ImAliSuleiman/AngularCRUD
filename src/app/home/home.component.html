@@ -1,10 +1,11 @@
-<div class="button-container">
+<!-- <div class="button-container">
   <button class="btn btn-lg btn-primary btn-block" (click)="onClickRefreshList()">Refresh List</button>
-</div>
+</div> -->
 
 <ul *ngIf="users">
   <li *ngFor="let user of users.data">
-    {{ user.fullname }} {{ user.username }}
+    Name: <b>{{ user.fullname }}</b> &nbsp; &nbsp; Username: <b>{{ user.username }}</b> 
+    <button class="btn btn-sm btn-danger button-container pull-right" (click)="onClickDeleteUser(user.username)">Delete</button>
   </li>
 </ul>
 

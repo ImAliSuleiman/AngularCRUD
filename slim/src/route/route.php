@@ -72,7 +72,7 @@ $app->post('/signup', function (Request $request, Response $response, array $arg
 $app->delete('/deleteuser/{username}', function (Request $request, Response $response, array $args) {
     $username = $request -> getAttribute('username');
 
-    $query = "DELETE FROM users WHERE username=$username";
+    $query = "DELETE FROM users WHERE username='$username'";
 
     try{
         $db = new Db;
@@ -80,7 +80,7 @@ $app->delete('/deleteuser/{username}', function (Request $request, Response $res
 
         $statement = $db -> prepare($query);
         $statement -> execute();
-        $response = '{"success": {"message": "User has been inserted."} }';
+        $response = '{"success": {"message": "User has been deleted."} }';
 
     } catch(PDOException $e) {
         $response = '{"error": {"message":' .$e->getMessage().' }}';

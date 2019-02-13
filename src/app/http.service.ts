@@ -24,4 +24,9 @@ export class HttpService {
     console.log('getUser request started!');
     return this.http.post('http://localhost/slim/public/signup', user);
   }
+
+  deleteUser(username) {
+    console.log('getUser request started!');
+    return this.http.delete('http://localhost/slim/public/deleteuser/' + username);
+  }
 }
