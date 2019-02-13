@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,7 @@ export class SignupComponent implements OnInit {
   private fullname = "";
   private password = "";
 
-  constructor(private service : HttpService) { }
+  constructor(private service : HttpService, private router : Router) { }
 
   ngOnInit() {
   }
@@ -24,8 +25,10 @@ export class SignupComponent implements OnInit {
       "password": this.password
     }
 
-    this.service.registerUser(user).subscribe(respose => {
-      console.log(respose);
+    this.service.registerUser(user).subscribe(response => {
+      console.log(response);
+
+      this.router.navigate(['/']);
     })
     
   }
