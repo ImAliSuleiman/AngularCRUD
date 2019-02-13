@@ -332,3 +332,6 @@ html {
     width:60%;
   }
   
+#formContent {
+  padding-top: 24px;
+}
