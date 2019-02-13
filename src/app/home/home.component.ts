@@ -38,6 +38,9 @@ export class HomeComponent implements OnInit {
     console.log('User to delete: ' + username);
     this.httpService.deleteUser(username).subscribe(respose => {
       console.log(respose);
+
+      this.users = [];
+      this.getUsersFromService();
     })
 
   }
