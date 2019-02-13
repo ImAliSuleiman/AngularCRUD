@@ -14,10 +14,9 @@ export class HttpService {
     // return this.http.get('https://reqres.in/api/users');
   }
 
-  signIn(username, password){
+  signIn(credential){
     console.log('Sign In started!');
-    console.log('username: ' + username + ", password: " + password);
-    return this.http.get('http://localhost/slim/public/signin?username=' + username + "&password=" + password);
+    return this.http.post('http://localhost/slim/public/signin', credential);
   }
 
   registerUser(user) {

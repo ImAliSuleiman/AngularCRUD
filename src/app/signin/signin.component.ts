@@ -8,8 +8,8 @@ import { HttpService } from '../http.service';
 })
 export class SigninComponent implements OnInit {
 
-   username = "";
-   password = "";
+  private username = "";
+  private password = "";
 
   constructor(private http: HttpService) { }
 
@@ -17,8 +17,15 @@ export class SigninComponent implements OnInit {
   }
 
   onClickSignIn(){
-    let response = this.http.signIn(this.username, this.password);
-    console.log('response: ' + response);
+    let credential = {
+      "username" : this.username,
+      "password" : this.password
+    }
+    
+    console.log('credential: ' + credential);
+    this.http.signIn(credential).subscribe(response => {
+      console.log(response);
+    })
   }
 
   onClick(){
