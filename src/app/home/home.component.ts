@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit {
   private getUsersFromService(){
     this.httpService.getUsers().subscribe(data => {
       console.log('getUser request completed!');
-      data = {
-        "data": data
-      }
+      // data = {
+      //   "data": data
+      // }
       this.users = data;
       console.log(this.users);
     })

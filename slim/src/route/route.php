@@ -17,7 +17,6 @@ $app->get('/signin', function (Request $request, Response $response, array $args
    $pass = $request -> getParam('password');
 
    // Get db connection
-   $response = 'Read data route.';
    $query = "SELECT * FROM users WHERE username='$user' AND password='$pass'";
 
    try{
@@ -27,16 +26,26 @@ $app->get('/signin', function (Request $request, Response $response, array $args
        $statement = $db -> query($query);
        $result = $statement -> fetchAll(PDO::FETCH_OBJ);
 
-       $response = "Sign In successful!";
+       if ($result){
+         $profile['status'] = true;
+         $profile['profile'] = $result;
+       } else {
 
-    //    $response = json_encode($result);
+       $profile['status'] = false;
 
-   } catch(PDOException $e) {
-       $response = '{"error": {"message":' .$e->getMessage().' }}';
-   } 
+       }
 
-   return $response;
+       $response = json_encode($profile);
+
+    //    $response = '{"success": true, "message": "User has been inserted.", "profile": $profile }';
+
+    } catch(PDOException $e) {
+        $response = '{"success": false, "message":' .$e->getMessage().' }';
+    } 
+
+    return $response;
 });
+
 
 $app->post('/signup', function (Request $request, Response $response, array $args) {
     // Get params from request.
